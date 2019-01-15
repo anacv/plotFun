@@ -1,0 +1,14 @@
+Package: plotFun
+Type: Package
+Title: Helper functions for plotting data.
+Version: 1.0.0
+Date: 2019-01-15
+Author: A. Casanueva
+Maintainer: A.Casanueva <ana.casanueva@meteoswiss.ch>
+Description: Helper functions for plotting data.
+License: file LICENCE
+RoxygenNote: 6.0.1
+Depends: R (>= 2.10.0)
+Suggests: testthat, assertthat
+Imports: stats
+Encoding: ISO-8859-1
