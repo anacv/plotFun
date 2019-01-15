@@ -37,7 +37,7 @@ Plot with the 2-dimensional kernel densities and historgrams for the input varia
 Plot 2-dimensional kernel density plots and the histograms of the two input variables.
 }
 \details{
-The two-dimensional kernel density estimation is done with the function kde2d in package MASS. Needed packages: MASS, RColorBrewer.
+The two-dimensional kernel density estimation is done with the function kde2d in package MASS.
 }
 \author{
 : Ana Casanueva, 13.12.2018

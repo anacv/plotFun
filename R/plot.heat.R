@@ -2,7 +2,7 @@
 #'
 #' @param hu: vector with relative humidity data.
 #' @param ta: vector with air temperature data.
-#' @heat.index: heat index to plot as a function of dew point and air temperature. Available: wbt, swbgt, hi.
+#' @param heat.index: heat index to plot as a function of dew point and air temperature. Available: wbt, swbgt, hi.
 #' @param xlim: 2-element vector with X-axis limits for the density plot. Default: range of hu.
 #' @param ylim: 2-element vector with Y-axis limits for the density plot. Default: range of ta.
 #' @param breaks.index: vector of breaks for the heat index values. Example: breaks.den=seq(min, max, length=1000). By default, breaks is adjusted to the minimum and maximum values of the index.
@@ -14,16 +14,13 @@
 #' @param title: title above the plot.	
 #' @return Plot with the heat index values as a function of the input variables.
 #' @details Needed packages: HeatStress, RColorBrewer.
+#' @import HeatStress RColorBrewer
 #' @author: Ana Casanueva, 13.12.2018
 
 
 
 plot.heat <- function(hu, ta, xlim=range(hu, na.rm=T), ylim=range(ta, na.rm=T), heat.index=NULL,  breaks.index=NULL, title=NULL, xlab="Relative Humidity", ylab="Maximum temperature", n.bins=500, add.points=TRUE, add.contours=TRUE){
 
-
-
-	library("HeatStress")
-	library("RColorBrewer")
 
 	if(n.bins>100) message("Patience: number of bins is ", n.bins)
 
@@ -76,44 +73,5 @@ plot.heat <- function(hu, ta, xlim=range(hu, na.rm=T), ylim=range(ta, na.rm=T), 
 
 }
 
-
-#' Plot the colorbar.
-#' 
-#' Plot the colorbar.
-#' 
-#' @param breaks: vector of values defining the intervals to be used in the colorbar. 
-#' @param palette: character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.
-#' @param unit.text: character string to be placed in the colorbar with the units.
-#' @param cex.unit: numeric value giving the expansion factor of the units text. Default:1.
-#' @param cex.textcbar: numeric value giving the expansion factor of the colorbar text. Default:1.
-#'
-#' @author Ana Casanueva (16.02.2017)
-#' 
-
-plot.colorbar <- function(breaks, palette=palette, unit.text, cex.unit, cex.textcbar) {
-
-	# Number of intervals to plot
-	lev <- length(breaks)-1; 
-
-	# Interpolate palette to the number of levels
-	cols <- colorRampPalette(palette)(lev)
-
-	# Define colorbar
-	col.bar <- matrix(seq(1.5,length(breaks)-0.5),nrow=1,ncol=lev) 
-
-	# Plot colorbar
-	image(x=1,y=seq(1.5,length(breaks)-0.5),z=col.bar,axes=F,col=cols,xlab="",ylab="")
-	par(las=1) # axis labeling always horizontal
-
-	# Write only 10 breaks when there are too many
-	if(length(breaks)>100){
-		axis(4,at=seq(1,length(breaks), 100),lab=round(breaks[seq(1,length(breaks),100)],4) , cex.axis=cex.textcbar)
-	}else{
-		axis(4,at=(1:length(breaks)),lab=breaks, cex.axis=cex.textcbar)
-	}
-
-	mtext(text=unit.text, side=3, line=0.5, cex=cex.unit)
-	box()  
-}
 
 

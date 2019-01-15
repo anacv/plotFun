@@ -10,5 +10,5 @@ License: file LICENCE
 RoxygenNote: 6.0.1
 Depends: R (>= 2.10.0)
 Suggests: testthat, assertthat
-Imports: stats
+Imports: stats, HeatStress (>= 1.0.4), MASS, RColorBrewer, classInt, maps
 Encoding: ISO-8859-1

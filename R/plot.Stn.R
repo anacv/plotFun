@@ -30,7 +30,7 @@
 #' @param export.format: "png" or "pdf" format.
 #'
 #' @details Packages classInt and maps needed.
-#'
+#' @import classInt maps 
 #' @author Ana Casanueva (17.02.2017)
 #' 
 
@@ -41,7 +41,7 @@ plot.Stations <- function(data, lon, lat, xlims, ylims, lattice=NULL, breaks= NU
 	try(if(export & is.null(export.path)) stop("Cannot save plot: missing export.path"))
 	# Export figure or not
 	if (export & !is.null(export.format) & !is.null(export.path)){
-		if(export.format=="png") png(export.path,width=window.width, height=window.height, unit="in", res=300)  
+		if(export.format=="png") png(export.path,width=window.width, height=window.height, units="in", res=300)  
 		if (export.format=="pdf") pdf(export.path,width=window.width, height=window.height) 
 	} else {dev.new(width=window.width, height=window.height)}
 
@@ -172,118 +172,5 @@ plot.Stations1 <- function(x, lon, lat, xlims, ylims, breaks= breaks, palette=pa
 		title(main= title.main, cex.main=cex.main, line=0)
 	} else stop("Number of stations does not match the data size")
 
-}
-
-
-#' Plot the colorbar.
-#' 
-#' Plot the colorbar.
-#' 
-#' @param breaks: vector of values defining the intervals to be used in the colorbar. 
-#' @param palette: character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.
-#' @param unit.text: character string to be placed in the colorbar with the units.
-#' @param cex.unit: numeric value giving the expansion factor of the units text. Default:1.
-#' @param cex.textcbar: numeric value giving the expansion factor of the colorbar text. Default:1.
-#'
-#' @author Ana Casanueva (16.02.2017)
-#' 
-
-plot.colorbar <- function(breaks, palette=palette, unit.text, cex.unit, cex.textcbar) {
-
-	# Number of intervals to plot
-	lev <- length(breaks)-1; 
-
-	# Interpolate palette to the number of levels
-	cols <- colorRampPalette(palette)(lev)
-
-	# Define colorbar
-	col.bar <- matrix(seq(1.5,length(breaks)-0.5),nrow=1,ncol=lev) 
-
-	# Plot colorbar
-	image(x=1,y=seq(1.5,length(breaks)-0.5),z=col.bar,axes=F,col=cols,xlab="",ylab="")
-	par(las=1) # axis labeling always horizontal
-	
-	# Write only 10 breaks when there are too many
-	if(length(breaks)>100){
-		axis(4,at=seq(1,length(breaks),25),lab=breaks[seq(1,length(breaks),25)] , cex.axis=cex.textcbar)
-	}else{
-		axis(4,at=(1:length(breaks)),lab=breaks, cex.axis=cex.textcbar)
-	}
-
-	mtext(text=unit.text, side=3, line=0.5, cex=cex.unit)
-	box()  
-}
-
-
-#' Set breaks for a colorbar.
-#' 
-#' Set breaks for a colorbar with the lowest and highest values. This is used when no breaks are given by the user.
-#' 
-#' @param data: vector or matrix to be plotted
-#' @return breaks:  vector of values defining the intervals to be used in the colorbar. 
-#'
-#' @author Ana Casanueva (16.02.2017)
-#' 
-set.Breaks <- function(data){
-
-	min <- floor(min(data, na.rm=T))
-	max <- ceiling(max(data, na.rm=T))
-	inc <- (max-min)/10
-	breaks <- seq(min, max,inc)
-
-	return(breaks)
-}
-
-#' Sort data
-#' 
-#' Sort data is ascending order and coordinates accordingly, in order to plot highest values on top.
-#' 
-#' @param data: vector to be plotted. 
-#' @param lon: vector of longitudes. It must have the same length as data .
-#' @param lat: vector of latitudes. It must have the same length as data .
-#' @return A list of: data, lon, lat, indices with new order.
-#' @details 
-#'
-#' @author Ana Casanueva (12.12.2017)
-#' 
-
-sort4plot <- function(data, lon, lat){
-  
-  # new data with NAs and sorted data
-  plot.data <- rep(NA, length(data))
-  all <- seq(1,length(data))
-  
-  # look for NAs
-  ind.na <- which(is.na(data))
-  
-  if(length(ind.na)>0){
-    
-    # sort no NA data
-    aux.sort <- sort(data[-ind.na], index.return=TRUE)
-    
-    # place sorted data
-    plot.data[(length(ind.na)+1):(length(ind.na)+length(aux.sort$x))] <- aux.sort$x
-    
-    # indices assigned to new order
-    ind <- c(ind.na, all[-ind.na][aux.sort$ix])
-    
-  } else{
-    # sort data
-    aux.sort <- sort(data, index.return=TRUE)
-    
-    # place sorted data
-    plot.data <- aux.sort$x
-    
-    # indices assigned to new order
-    ind <- aux.sort$ix
-    
-  }
-  
-  # new coordinates 
-  lon.new <- lon[ind]
-  lat.new <- lat[ind]
-  
-  result <- list(data=plot.data, lon=lon.new, lat=lat.new, indices=ind)
-  return(result)
 }
 

@@ -14,6 +14,8 @@
 
 \item{ta:}{vector with air temperature data.}
 
+\item{heat.index:}{heat index to plot as a function of dew point and air temperature. Available: wbt, swbgt, hi.}
+
 \item{xlim:}{2-element vector with X-axis limits for the density plot. Default: range of hu.}
 
 \item{ylim:}{2-element vector with Y-axis limits for the density plot. Default: range of ta.}

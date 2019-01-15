@@ -11,15 +11,13 @@
 #' @param ylab: Y-axis label.
 #' @param title: title above the plot.	
 #' @return Plot with the 2-dimensional kernel densities and historgrams for the input variables.
-#' @details The two-dimensional kernel density estimation is done with the function kde2d in package MASS. Needed packages: MASS, RColorBrewer.
+#' @details The two-dimensional kernel density estimation is done with the function kde2d in package MASS.
+#' @import MASS RColorBrewer
 #' @author: Ana Casanueva, 13.12.2018
 
 
 plot.kde2dhist <- function(hu, ta, xlim=range(hu, na.rm=T), ylim=range(ta, na.rm=T), breaks.den=NULL, title=NULL, xlab="Relative Humidity", ylab="Maximum temperature", n.bins=25, add.contours=TRUE){
 
-
-	library("MASS") # for kde2d
-	library("RColorBrewer")
 
 	# *** Build data frame with input variables and histograms ***
 	aux <- hu + ta
@@ -82,48 +80,9 @@ plot.kde2dhist <- function(hu, ta, xlim=range(hu, na.rm=T), ylim=range(ta, na.rm
 
 	# plot title
 	par(mar=c(0.1,2,0.2,0.5))
-	plot(c(0,1),c(0,1),type="n",axes=F, ann=F,)
+	plot(c(0,1),c(0,1),type="n",axes=F, ann=F)
 	text(0.5,0.5,title,font=2,cex=1.5)
 
-}
-
-#' Plot the colorbar.
-#' 
-#' Plot the colorbar.
-#' 
-#' @param breaks: vector of values defining the intervals to be used in the colorbar. 
-#' @param palette: character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.
-#' @param unit.text: character string to be placed in the colorbar with the units.
-#' @param cex.unit: numeric value giving the expansion factor of the units text. Default:1.
-#' @param cex.textcbar: numeric value giving the expansion factor of the colorbar text. Default:1.
-#'
-#' @author Ana Casanueva (16.02.2017)
-#' 
-
-plot.colorbar <- function(breaks, palette=palette, unit.text, cex.unit, cex.textcbar) {
-
-	# Number of intervals to plot
-	lev <- length(breaks)-1; 
-
-	# Interpolate palette to the number of levels
-	cols <- colorRampPalette(palette)(lev)
-
-	# Define colorbar
-	col.bar <- matrix(seq(1.5,length(breaks)-0.5),nrow=1,ncol=lev) 
-
-	# Plot colorbar
-	image(x=1,y=seq(1.5,length(breaks)-0.5),z=col.bar,axes=F,col=cols,xlab="",ylab="")
-	par(las=1) # axis labeling always horizontal
-
-	# Write only 10 breaks when there are too many
-	if(length(breaks)>100){
-		axis(4,at=seq(1,length(breaks), 100),lab=round(breaks[seq(1,length(breaks),100)],4) , cex.axis=cex.textcbar)
-	}else{
-		axis(4,at=(1:length(breaks)),lab=breaks, cex.axis=cex.textcbar)
-	}
-
-	mtext(text=unit.text, side=3, line=0.5, cex=cex.unit)
-	box()  
 }
 
 
