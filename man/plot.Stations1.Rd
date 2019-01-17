@@ -9,28 +9,29 @@
   mark.border = mark.border)
 }
 \arguments{
-\item{x:}{vector to be plotted.}
+\item{x}{vector to be plotted.}
 
-\item{lon:}{vector of longitudes. It must have the same length as x.}
+\item{lon}{vector of longitudes. It must have the same length as x.}
 
-\item{lat:}{vector of latitudes. It must have the same length as x.}
+\item{lat}{vector of latitudes. It must have the same length as x.}
 
-\item{xlims:}{2-element vector defining the minimum and maximum longitud for the plotting area.}
+\item{xlims}{2-element vector defining the minimum and maximum longitud for the plotting area.}
 
-\item{ylims:}{2-element vector defining the minimum and maximum latitude for the plotting area.}
+\item{ylims}{2-element vector defining the minimum and maximum latitude for the plotting area.}
 
-\item{breaks:}{vector of values defining the intervals to be used in the colorbar.}
+\item{breaks}{vector of values defining the intervals to be used in the colorbar.}
 
-\item{palette:}{character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.}
+\item{palette}{character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.}
 
-\item{title.main:}{character string with the title.}
+\item{cex.marker}{numeric value giving the marker expansion factor. Default: 1.}
 
-\item{cex.marker:}{numeric value giving the marker expansion factor. Default: 1.}
+\item{cex.main}{numeric value giving the title expansion factor. Default: 1.}
 
-\item{cex.main:}{numeric value giving the title expansion factor. Default: 1.}
+\item{title.main}{character string with the title.}
 
-\item{mark.border:}{logical. If black contour for the cicles is plotted. Default=TRUE.
-param axis.lab: display or not lon/lat ticks and labels. Default=FALSE}
+\item{axis.lab}{display or not lon/lat ticks and labels. Default=FALSE}
+
+\item{mark.border}{logical. If black contour for the cicles is plotted. Default=TRUE.}
 }
 \description{
 Plot a figure based on point stations, for a single plot.

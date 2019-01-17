@@ -2,25 +2,22 @@
 % Please edit documentation in R/sort4plot.R
 \name{sort4plot}
 \alias{sort4plot}
-\title{Sort data}
+\title{Sort data.}
 \usage{
 sort4plot(data, lon, lat)
 }
 \arguments{
-\item{data:}{vector to be plotted.}
+\item{data}{vector to be plotted.}
 
-\item{lon:}{vector of longitudes. It must have the same length as data .}
+\item{lon}{vector of longitudes. It must have the same length as data .}
 
-\item{lat:}{vector of latitudes. It must have the same length as data .}
+\item{lat}{vector of latitudes. It must have the same length as data .}
 }
 \value{
 A list of: data, lon, lat, indices with new order.
 }
 \description{
 Sort data is ascending order and coordinates accordingly, in order to plot highest values on top.
-}
-\details{
-
 }
 \author{
 Ana Casanueva (12.12.2017)

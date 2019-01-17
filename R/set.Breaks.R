@@ -10,7 +10,7 @@ set.Breaks <- function(data){
   min <- floor(min(data, na.rm=T))
   max <- ceiling(max(data, na.rm=T))
   inc <- (max-min)/10
-  breaks <- seq(min, max,inc)
+  breaks <- round(seq(min, max,inc),2)
   
   return(breaks)
 }

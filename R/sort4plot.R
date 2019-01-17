@@ -1,12 +1,11 @@
-#' Sort data
+#' Sort data.
 #' 
 #' Sort data is ascending order and coordinates accordingly, in order to plot highest values on top.
 #' 
-#' @param data: vector to be plotted. 
-#' @param lon: vector of longitudes. It must have the same length as data .
-#' @param lat: vector of latitudes. It must have the same length as data .
+#' @param data vector to be plotted. 
+#' @param lon vector of longitudes. It must have the same length as data .
+#' @param lat vector of latitudes. It must have the same length as data .
 #' @return A list of: data, lon, lat, indices with new order.
-#' @details 
 #'
 #' @author Ana Casanueva (12.12.2017)
 #' 

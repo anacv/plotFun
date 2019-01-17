@@ -7,67 +7,83 @@
 \method{plot}{Grid}(data, lon, lat, lonLims = c(min(lon), max(lon)),
   latLims = c(min(lat), max(lat)), lattice = NULL, breaks = NULL,
   palette = rainbow(10), window.width = 8, window.height = 6,
-  pch.marker = 16, title.main = NULL, title.single = NULL,
-  unit.text = NULL, cex.marker = 1, cex.main = 1, cex.single = 1,
-  cex.unit = 1, cex.textcbar = 1, width.cbar = 0.1,
-  disp.warnings = FALSE, export = FALSE, export.format = NULL,
-  export.path = NULL, xlab = NULL, ylab = NULL, lon.points = NA,
+  title.main = NULL, title.single = NULL, unit.text = NULL,
+  cex.main = 1, cex.single = 1, cex.unit = 1, cex.textcbar = 1,
+  width.cbar = 0.1, disp.warnings = FALSE, export = FALSE,
+  export.format = NULL, export.path = NULL, lon.points = NA,
   lat.points = NA)
 }
 \arguments{
+\item{data}{matrix or list of matrices to be plotted. When it is a list, a multiplot is generated (each element of the list is plotted in a subplot).}
+
+\item{lon}{vector longitudes in strictly ascending order.}
+
+\item{lat}{vector latitudes in strictly ascending order.}
+
+\item{lonLims}{2-elemtent vector with the range of longitudes to be plotted. By default all the data is plotted.}
+
+\item{latLims}{2-elemtent vector with the range of latitudes to be plotted. By default all the data is plotted.}
+
+\item{lattice}{in multiple plots, 2-element vector giving the number of rows and columns to display the multiplot.}
+
+\item{breaks}{vector of values defining the intervals to be used in the colorbar.}
+
+\item{palette}{character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.}
+
+\item{window.width}{sets the width of the device window. Modify this argument to improve the appearance. Default:8.}
+
+\item{window.height}{sets the height of the device window.  Modify this argument to improve the appearance. Default:6.}
+
+\item{title.main}{character string with the main title.}
+
 \item{title.single}{(optional): in multiple plots, a character vector with the individual titles for single plots.}
+
+\item{unit.text}{character string to be placed in the colorbar with the units.}
+
+\item{cex.main}{numeric value giving the title expansion factor. Default: 1.}
 
 \item{cex.single}{(optional): in multiple plots, numeric value giving the title expansion factor. Default: 1.}
 
-\item{data:}{mattix or list of matrices to be plotted. When it is a list, a multiplot is generated (each element of the list is plotted in a subplot).}
+\item{cex.unit}{numeric value giving the expansion factor of the units text. Default:1.}
 
-\item{lon:}{array of longitudes.}
+\item{cex.textcbar}{numeric value giving the expansion factor of the text in the colorbar. Default:1.}
 
-\item{lat:}{array of latitudes.}
+\item{width.cbar}{numeric value giving the fraction of the plot (from 0 to 1) reserved for the colorbar. Modify this argument for a better appearance. Default=0.1}
 
-\item{lonLims:}{2-elemtent vector with the range of longitudes to be plotted. By default all the data is plotted.}
+\item{disp.warnings}{logical to set if warnings shoul be displayed.}
 
-\item{latLims:}{2-elemtent vector with the range of latitudes to be plotted. By default all the data is plotted.}
+\item{export}{logical. If TRUE, the figure is exported as pdf file. Default: False.}
 
-\item{lattice:}{in multiple plots, 2-element vector giving the number of rows and columns to display the multiplot.}
+\item{export.format}{"png" or "pdf" format.}
 
-\item{breaks:}{vector of values defining the intervals to be used in the colorbar.}
+\item{export.path}{path (including file name) to save the plot.}
 
-\item{palette:}{character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.}
+\item{lon.points}{vector of longitudes for grid points to be marked in the map.}
 
-\item{window.width:}{sets the width of the device window. Modify this argument to improve the appearance. Default:8.}
-
-\item{window.height:}{sets the height of the device window.  Modify this argument to improve the appearance. Default:6.}
-
-\item{title.main:}{character string with the main title.}
-
-\item{unit.text:}{character string to be placed in the colorbar with the units.}
-
-\item{cex.main:}{numeric value giving the title expansion factor. Default: 1.}
-
-\item{cex.textcbar:}{numeric value giving the expansion factor of the text in the colorbar. Default:1.}
-
-\item{cex.unit:}{numeric value giving the expansion factor of the units text. Default:1.}
-
-\item{width.cbar:}{numeric value giving the fraction of the plot (from 0 to 1) reserved for the colorbar. Modify this argument for a better appearance. Default=0.1}
-
-\item{disp.warnings:}{logical to set if warnings shoul be displayed.}
-
-\item{export:}{logical. If TRUE, the figure is exported as pdf file. Default: False.}
-
-\item{export.path:}{path (including file name) to save the plot.}
-
-\item{export.format:}{"png" or "pdf" format.}
-
-\item{lon.points:}{vector of longitudes for grid points to be marked in the map.}
-
-\item{lat.points:}{vector of latitudes for grid points to be marked in the map.}
+\item{lat.points}{vector of latitudes for grid points to be marked in the map.}
 }
 \description{
 Plot a gridded map, either a single plot or multiplot. A common colorbar is set for a multiplot.
 }
 \details{
 Packages classInt and maps needed.
+}
+\examples{
+\dontrun{
+# Generate data
+x <- seq(-5, 20); m= length(x)
+y <- seq(35,55); n=length(y)
+tas <- array(runif(n*m*6, -5, 30), dim=c(6,m,n)) # time, lon lat.
+# Single plot
+plot.Grid(tas[1,,], lon=x, lat = y, lonLims = c(-10,30), latLims = c(35,65), width.cbar = 0.2, 
+breaks = seq(10,20), title.main = "Mean Temp.", unit.text = "degC", cex.main=1.5)
+# Multi-plots
+plot.Grid(list(tas[1,,], tas[2,,], tas[3,,], tas[4,,], tas[5,,], tas[6,,]), 
+lon=x, lat = y, lonLims = c(-10,30), latLims = c(35,65), lattice=c(2,3), width.cbar = 0.1, 
+breaks = seq(10,20), window.height = 8, window.width = 12, 
+title.single = c("Temp1","Temp2","Temp3","Temp4","Temp5","Temp6"), cex.single = 1.3, 
+title.main = "Station plot - Multiplot", cex.main = 2, unit.text = "degC")
+}
 }
 \author{
 Ana Casanueva (24.05.2017)

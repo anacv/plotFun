@@ -2,33 +2,37 @@
 % Please edit documentation in R/plot.Grid.R
 \name{plot.Grid1}
 \alias{plot.Grid1}
-\title{Plot stations (single plot).}
+\title{Plot grid (single plot).}
 \usage{
 \method{plot}{Grid1}(x, lon, lat, lonLims, latLims, breaks = breaks,
-  palette = palette, cex.main, title.main, xlab, ylab,
-  lon.points = lon.points, lat.points = lat.points)
+  palette = palette, cex.main, title.main, lon.points = lon.points,
+  lat.points = lat.points)
 }
 \arguments{
-\item{x:}{matrix to be plotted.}
+\item{x}{matrix to be plotted.}
 
-\item{lon:}{array of longitudes}
+\item{lon}{array of longitudes}
 
-\item{lat:}{array of latitudes}
+\item{lat}{array of latitudes}
 
-\item{breaks:}{vector of values defining the intervals to be used in the colorbar.}
+\item{lonLims}{2-elemtent vector with the range of longitudes to be plotted. By default all the data is plotted.}
 
-\item{palette:}{character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.}
+\item{latLims}{2-elemtent vector with the range of latitudes to be plotted. By default all the data is plotted.}
 
-\item{title.main:}{character string with the title.}
+\item{breaks}{vector of values defining the intervals to be used in the colorbar.}
 
-\item{cex.main:}{numeric value giving the title expansion factor. Default: 1.}
+\item{palette}{character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.}
 
-\item{lon.points:}{vector of longitudes for grid points to be marked in the map.}
+\item{cex.main}{numeric value giving the title expansion factor. Default: 1.}
 
-\item{lat.points:}{vector of latitudes for grid points to be marked in the map.}
+\item{title.main}{character string with the title.}
+
+\item{lon.points}{vector of longitudes for grid points to be marked in the map.}
+
+\item{lat.points}{vector of latitudes for grid points to be marked in the map.}
 }
 \description{
-Plot a figure based on point stations, for a single plot.
+Plot a figure based on a regular grid, for a single plot.
 }
 \author{
 Ana Casanueva (16.02.2017)

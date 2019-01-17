@@ -2,11 +2,11 @@
 #' 
 #' Plot the colorbar.
 #' 
-#' @param breaks: vector of values defining the intervals to be used in the colorbar. 
-#' @param palette: character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.
-#' @param unit.text: character string to be placed in the colorbar with the units.
-#' @param cex.unit: numeric value giving the expansion factor of the units text. Default:1.
-#' @param cex.textcbar: numeric value giving the expansion factor of the colorbar text. Default:1.
+#' @param breaks vector of values defining the intervals to be used in the colorbar. 
+#' @param palette character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.
+#' @param unit.text character string to be placed in the colorbar with the units.
+#' @param cex.unit numeric value giving the expansion factor of the units text. Default:1.
+#' @param cex.textcbar numeric value giving the expansion factor of the colorbar text. Default:1.
 #'
 #' @author Ana Casanueva (16.02.2017)
 #' 

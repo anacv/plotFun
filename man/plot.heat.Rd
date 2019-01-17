@@ -4,45 +4,73 @@
 \alias{plot.heat}
 \title{Plot heat index as a function of the input variables.}
 \usage{
-\method{plot}{heat}(hu, ta, xlim = range(hu, na.rm = T), ylim = range(ta,
-  na.rm = T), heat.index = NULL, breaks.index = NULL, title = NULL,
-  xlab = "Relative Humidity", ylab = "Maximum temperature", n.bins = 500,
-  add.points = TRUE, add.contours = TRUE)
+\method{plot}{heat}(hu = NULL, td = NULL, ta, xlim = NULL,
+  ylim = range(ta, na.rm = T), heat.index = NULL, breaks.index = NULL,
+  title = NULL, cex.main = 1.5, xlab = NULL, ylab = NULL,
+  n.bins = 500, add.points = TRUE, add.contours = TRUE,
+  unit.text = NULL, cex.unit = 1, cex.textcbar = 1.3)
 }
 \arguments{
-\item{hu:}{vector with relative humidity data.}
+\item{hu}{vector with relative humidity data. \code{hu} or \code{td} are mandatory.}
 
-\item{ta:}{vector with air temperature data.}
+\item{td}{vector with dew point temperature data.\code{hu} or \code{td} are mandatory.}
 
-\item{heat.index:}{heat index to plot as a function of dew point and air temperature. Available: wbt, swbgt, hi.}
+\item{ta}{vector with air temperature data.}
 
-\item{xlim:}{2-element vector with X-axis limits for the density plot. Default: range of hu.}
+\item{xlim}{2-element vector with X-axis limits for the density plot. Default: range of hu/td.}
 
-\item{ylim:}{2-element vector with Y-axis limits for the density plot. Default: range of ta.}
+\item{ylim}{2-element vector with Y-axis limits for the density plot. Default: range of ta.}
 
-\item{breaks.index:}{vector of breaks for the heat index values. Example: breaks.den=seq(min, max, length=1000). By default, breaks is adjusted to the minimum and maximum values of the index.}
+\item{heat.index}{heat index to plot as a function of dew point/relative humidity and air temperature. Available (based on 2 variables): swbgt, hi, wbt.Stull, wbgt.Bernard, apparentTemp, effectiveTemp, humidex, discomInd.}
 
-\item{n.bins:}{number of bins for kernel density calculation. Default= 500}
+\item{breaks.index}{vector of breaks for the heat index values. By default, breaks is adjusted to the minimum and maximum values of the index.}
 
-\item{add.contours:}{logical. Add (default) or not contours for heat index values.}
+\item{title}{title above the plot.}
 
-\item{add.points:}{logical. Add (default) or not points with the eactual time series.}
+\item{cex.main}{Relative size of the plot title. Default:1.5.}
 
-\item{xlab:}{X-axis label.}
+\item{xlab}{X-axis label.}
 
-\item{ylab:}{Y-axis label.}
+\item{ylab}{Y-axis label.}
 
-\item{title:}{title above the plot.}
+\item{n.bins}{number of bins for kernel density calculation. Default= 500}
+
+\item{add.points}{logical. Add (default) or not points with the actual time series.}
+
+\item{add.contours}{logical. Add (default) or not contours for heat index values.}
+
+\item{unit.text}{character string to be placed in the colorbar with the units.}
+
+\item{cex.unit}{numeric value giving the expansion factor of the units text. Default:1.}
+
+\item{cex.textcbar}{numeric value giving the expansion factor of the colorbar text. Default:1.3.}
 }
 \value{
 Plot with the heat index values as a function of the input variables.
 }
 \description{
-Plot heat index as a function of the input variables.
+The index is calculated with the R package \code{HeatStress}.
 }
 \details{
-Needed packages: HeatStress, RColorBrewer.
+The two input variables of the desired index need to be provided, tas and either td or hu. Needed packages: HeatStress, RColorBrewer.
+}
+\examples{
+\dontrun{
+# Generate data
+tas <- rnorm(150, mean=15, sd=2)
+dew <- rnorm(150, mean=8, sd=1)
+hurs <- sample(1:100,150, replace=T)
+# Plot the heat plot
+plot.heat(hu=hurs, ta=tas, heat.index="wbt", title="Heat stress plot", cex.main=1.5, 
+xlab="Relative Humidity", ylab="Air temp.", n.bins=500)
+# Add points, change index
+plot.heat(hu=hurs, ta=tas, heat.index="swbgt", title="Heat stress plot", cex.main=1.5, 
+xlab="Relative Humidity", ylab="Air temp.", n.bins=500, add.points=F)
+# Add contours, change index
+plot.heat(td=dew, ta=tas, heat.index="wbgt.shade", title="Heat stress plot", cex.main=1.5, 
+xlab="Dew point temp.", ylab="Air temp.", n.bins=500, add.contours=F)
+}
 }
 \author{
-: Ana Casanueva, 13.12.2018
+Ana Casanueva, 13.12.2018
 }
