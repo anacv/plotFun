@@ -23,7 +23,7 @@
 #' @details The two input variables of the desired index need to be provided, tas and either td or hu. Needed packages: HeatStress, RColorBrewer.
 #' @import HeatStress RColorBrewer
 #' @author Ana Casanueva, 13.12.2018
-#' @export
+#' @export plot.heat
 #' @examples \dontrun{
 #' # Generate data
 #' tas <- rnorm(150, mean=15, sd=2)

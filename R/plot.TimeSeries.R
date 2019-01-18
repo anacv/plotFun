@@ -11,7 +11,7 @@
 #' @inheritParams plot.ts.orig
 #' @return A time series plot. Plotted data if 'output.data'=TRUE.
 #' @details Plot time series of one vector. It is possible to plot the "raw" series or aggregate it temporarily or display a specific season/month. If the input data is a matrix, by default a separate panel is obtained for each station. 'stn.together' allows to plot all stations together (without subplot).
-#' @export
+#' @export plot.TimeSeries
 #' @import grDevices graphics 
 #' @examples \dontrun{
 #'# Generate some data
@@ -22,30 +22,30 @@
 #'data.day <- array(runif(length(dates.day)*2, -5, 30), dim=c(length(dates.day),2)) 
 #'data.hour <- array(runif(length(dates.hour)*2, -5, 30), dim=c(length(dates.hour),2)) 
 #'# Plot original data
-#'plot.ts(data.day, dates.day, title = c("Original daily data"))
-#'plot.ts(data.day, dates.day, title = c("Original hourly data"), hour=T)
+#'plot.TimeSeries(data.day, dates.day, title = c("Original daily data"))
+#'plot.TimeSeries(data.day, dates.day, title = c("Original hourly data"), hour=T)
 #'# Plot temporarily aggregated data
-#'plot.ts(data.day, dates.day, title = "Yearly data", agg="Y")
-#'plot.ts(data.day, dates.day, title = "Monthly data", agg="M")
-#'plot.ts(data.day, dates.day, title = "Seasonal data", agg="S")
-#'plot.ts(data.hour, dates.hour, hour=T, title = "Daily data", agg="D")
+#'plot.TimeSeries(data.day, dates.day, title = "Yearly data", agg="Y")
+#'plot.TimeSeries(data.day, dates.day, title = "Monthly data", agg="M")
+#'plot.TimeSeries(data.day, dates.day, title = "Seasonal data", agg="S")
+#'plot.TimeSeries(data.hour, dates.hour, hour=T, title = "Daily data", agg="D")
 #'# Plot a specific season or month 
-#'plot.ts(data.day, dates.day, title = "Seasonal data in summer", season = c(6,7,8))
-#'plot.ts(data.day, dates.day, title = c("Monthly data in June A", "Monthly data in June B"), 
+#'plot.TimeSeries(data.day, dates.day, title = "Seasonal data in summer", season = c(6,7,8))
+#'plot.TimeSeries(data.day, dates.day, title = c("Monthly data in June A", "Monthly data in June B"), 
 #'season = 6) # and different subtitles
 #'# Plot all stations together instead of in subplot 
-#'plot.ts(data.day, dates.day, title = "Monthly data in June A", season = 6, stn.together=T)
+#'plot.TimeSeries(data.day, dates.day, title = "Monthly data in June A", season = 6, stn.together=T)
 #'# Plot and save plotted data
-#'res <- plot.ts(data.day, dates.day, title = "Monthly data in June", season = 6, output.data = T)
+#'res <- plot.TimeSeries(data.day, dates.day, title = "Monthly data in June", season = 6, output.data = T)
 #'# Export plot to file
-#'plot.ts(data.day, dates.day, title = "Monthly data in June", season = 6, export = T)
+#'plot.TimeSeries(data.day, dates.day, title = "Monthly data in June", season = 6, export = T)
 #'# Change window size
-#'plot.ts(data.day, dates.day, title = "Monthly data in June", season = 6, 
+#'plot.TimeSeries(data.day, dates.day, title = "Monthly data in June", season = 6, 
 #'window.width = 8, window.height = 4)
 #'}
 
 
-plot.ts <-
+plot.TimeSeries <-
   
   function(data, dates, hour=FALSE, agg=NULL, aggFun="mean", season=NULL, 
             export=FALSE, outDir = "current", outNam = "plot1",outDev = "pdf", title=NULL, input.mch=FALSE,

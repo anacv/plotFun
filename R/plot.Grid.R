@@ -26,7 +26,7 @@
 #' @param export.format "png" or "pdf" format.
 #' @param lon.points vector of longitudes for grid points to be marked in the map.
 #' @param lat.points vector of latitudes for grid points to be marked in the map.
-#' @export
+#' @export plot.Grid
 #' @details Packages classInt and maps needed.
 #' @import classInt maps
 #' @author Ana Casanueva (24.05.2017)

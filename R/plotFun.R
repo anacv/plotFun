@@ -13,8 +13,9 @@
 #'  
 #'  \item \code{plot.Stn}: Plot a map of stations.
 #'  \item \code{plot.Grid}: Plot a map of a regular grid.
-#'  \item \code{plot.ts}: Plot time series with or without temporal aggregation.
+#'  \item \code{plot.TimeSeries}: Plot time series with or without temporal aggregation.
 #'  \item \code{plot.kde2d.hist}: Plot a 2D Kernel density plot with the histograms of the marginal distributions.
+#'  \item \code{plot.heat}: Plot heat index as a function of the input variables.
 #'  
 #'  
 #'  Additional functions:  

@@ -27,7 +27,7 @@
 #' @param export logical. If TRUE, the figure is exported as pdf file. Default: False.
 #' @param export.path path (including file name) to save the plot.
 #' @param export.format "png" or "pdf" format.
-#' @export
+#' @export plot.Stn
 #' @details Packages classInt and maps needed.
 #' @import classInt maps 
 #' @author Ana Casanueva (17.02.2017)

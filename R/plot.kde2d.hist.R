@@ -16,7 +16,7 @@
 #' @return Plot with the 2-dimensional kernel densities and historgrams for the input variables.
 #' @details The two-dimensional kernel density estimation is done with the function kde2d in package MASS.
 #' @import MASS RColorBrewer
-#' @export
+#' @export plot.kde2d.hist
 #' @author Ana Casanueva, 13.12.2018
 #' @examples \dontrun{
 #' # Generate data
