@@ -1,6 +1,6 @@
-#' Plot 2-dimensional kernel density plots and the histograms of the two input variables.
+#' Plot a 2-dimensional kernel density plot and the histograms of the two input variables.
 #'
-#' Plot 2-dimensional kernel density plots and the histograms of the two input variables.
+#' Plot a 2-dimensional kernel density plot and the histograms of the two input variables.
 #'
 #' @param var1 vector with data for one variable.
 #' @param var2 vector with data for another variable.
@@ -16,21 +16,21 @@
 #' @return Plot with the 2-dimensional kernel densities and historgrams for the input variables.
 #' @details The two-dimensional kernel density estimation is done with the function kde2d in package MASS.
 #' @import MASS RColorBrewer
-#' @export plot.kde2d.hist
+#' @export plotFun.kde2d.hist
 #' @author Ana Casanueva, 13.12.2018
 #' @examples \dontrun{
 #' # Generate data
 #' tas <- rnorm(1000, mean=15, sd=2)
 #' td <- rnorm(1000, mean=8, sd=1)
-#' # Plot "-Dim Kernel density with histograms
-#' plot.kde2d.hist(var1=td, var2=tas, xlab="Dew point temp.", ylab="Air temperature", 
+#' # Plot 2-Dim Kernel density with histograms
+#' plotFun.kde2d.hist(var1=td, var2=tas, xlab="Dew point temp.", ylab="Air temperature", 
 #' n.bins=25, add.contours=FALSE, title="2D density plot", cex.main=2)
 #' # add contours for the density values
-#' plot.kde2d.hist(var1=td, var2=tas, xlab="Dew point temp.", ylab="Air temperature", 
+#' plotFun.kde2d.hist(var1=td, var2=tas, xlab="Dew point temp.", ylab="Air temperature", 
 #' n.bins=25, add.contours=TRUE, title="2D density plot with contours", cex.main=2)
 #' }
 
-plot.kde2d.hist <- function(var1, var2, xlim=range(var1, na.rm=T), ylim=range(var2, na.rm=T), breaks.den=NULL, title=NULL, cex.main=1.5, xlab=NULL, ylab=NULL, n.bins=25, add.contours=TRUE){
+plotFun.kde2d.hist <- function(var1, var2, xlim=range(var1, na.rm=T), ylim=range(var2, na.rm=T), breaks.den=NULL, title=NULL, cex.main=1.5, xlab=NULL, ylab=NULL, n.bins=25, add.contours=TRUE){
 
 
 	# *** Build data frame with input variables and histograms ***
@@ -90,7 +90,7 @@ plot.kde2d.hist <- function(var1, var2, xlim=range(var1, na.rm=T), ylim=range(va
 
 	# add color bar
 	par(mar=c(3,0.6,3,4.5))
-	plot.colorbar(round(breaks.den,4), palette=cols, " ", 1, 1.3)
+	plotFun.colorbar(round(breaks.den,4), palette=cols, " ", 1, 1.3)
 
 	# plot title
 	par(mar=c(0.1,2,0.2,0.5))

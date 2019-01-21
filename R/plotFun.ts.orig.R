@@ -1,8 +1,8 @@
 #' Plot time series.
 #' 
-#' Plot a time series plot, with the possibility of applying a temporal aggregation (see \code{data.agg}). 
+#' Plot a time series plot, with the possibility of applying a temporal aggregation (see \code{data_agg}). 
 #' 
-#' @param data Matrix with the data to be plotted (time steps in rows, stations in columns). The column names are used for labels in the plot.
+#' @param data Matrix with the data to be plotted (time steps in rows, stations in columns). The column names are used for labels in the plot, otherwise a,b,c,... are used.
 #' @param dates Vector of dates (POSIX class) of the original data.
 #' @param agg Level of temporal aggregation: daily ("D", only for hourly input data), monthly ("M"), seasonal ("S"), annual ("Y"). Default: NULL (all data is plotted using the original temporal resolution). This argument is only valid for \code{type="ts"}.
 #' @param aggFun Function for temporal aggregation, if desired. Possible values: mean, median, min, max. Default: mean.
@@ -12,13 +12,13 @@
 #' @param stn.together Logical, set to TRUE to plot all stations with colour lines in one plot. Default: FALSE. Only available for time series plots.
 #' @param col.lines Vector with colours for lines. Only available for time series plots.
 #' @param title character string with the main title. A 1-element vector would set the same title to all subplots, a n-element vector would have the titles for n subplots.
-#' @param input.mch logical. If the input data is from DWH, the hourly needs to be aggregated differently. See \code{data.agg}. Default: FALSE
+#' @param input.mch logical. If the input data is from DWH, the hourly needs to be aggregated differently. See \code{data_agg}. Default: FALSE
 #' @return A time series plot. Plotted data if 'output.data'=TRUE. The result is a list with the aggregated data, aggregated dates, function and type of aggregation.
 #' @details Plot time series of one vector. It is possible to plot the "raw" series or aggregate it temporarily or display a specific season/month. If the input data is a matrix, by default a separate panel is obtained for each station. 'stn.together' allows to plot all stations together (without subplot).
 #' @import grDevices graphics 
 
 
-plot.ts.orig <-
+plotFun.ts.orig <-
   function (data, dates, hour=FALSE, agg=NULL, aggFun="mean", season=NULL, 
             output.data=FALSE, stn.together=FALSE, col.lines=rainbow(10), title=NULL, input.mch=FALSE) {
 
@@ -40,7 +40,7 @@ plot.ts.orig <-
         }
 
         # Aggregate data temporarily 
-        aux.agg <- data.agg(data = data, dates=dates, agg=agg, aggFun= aggFun, input.mch)
+        aux.agg <- data_agg(data = data, dates=dates, agg=agg, aggFun= aggFun, input.mch)
         data.plot <- as.matrix(aux.agg$data.agg) # To avoid problems with one station
         dates.plot <- aux.agg$dates.agg
 
@@ -166,4 +166,4 @@ plot.ts.orig <-
     res <- list(data=df, dates=dates.plot, agg=agg, season=season, aggFun=aggFun)
 
     
-} # end plot.ts.orig
+} # end plotFun.ts.orig

@@ -23,27 +23,27 @@
 #' @details The two input variables of the desired index need to be provided, tas and either td or hu. Needed packages: HeatStress, RColorBrewer.
 #' @import HeatStress RColorBrewer
 #' @author Ana Casanueva, 13.12.2018
-#' @export plot.heat
+#' @export plotFun.heat
 #' @examples \dontrun{
 #' # Generate data
 #' tas <- rnorm(150, mean=15, sd=2)
 #' dew <- rnorm(150, mean=8, sd=1)
 #' hurs <- sample(1:100,150, replace=T)
 #' # Plot the heat plot
-#' plot.heat(hu=hurs, ta=tas, heat.index="wbt", title="Heat stress plot", cex.main=1.5, 
+#' plotFun.heat(hu=hurs, ta=tas, heat.index="wbt", title="Heat stress plot", cex.main=1.5, 
 #' xlab="Relative Humidity", ylab="Air temp.", n.bins=500)
 #' # Add points, change index
-#' plot.heat(hu=hurs, ta=tas, heat.index="swbgt", title="Heat stress plot", cex.main=1.5, 
+#' plotFun.heat(hu=hurs, ta=tas, heat.index="swbgt", title="Heat stress plot", cex.main=1.5, 
 #' xlab="Relative Humidity", ylab="Air temp.", n.bins=500, add.points=F)
 #' # Add contours, change index
-#' plot.heat(td=dew, ta=tas, heat.index="wbgt.shade", title="Heat stress plot", cex.main=1.5, 
+#' plotFun.heat(td=dew, ta=tas, heat.index="wbgt.shade", title="Heat stress plot", cex.main=1.5, 
 #' xlab="Dew point temp.", ylab="Air temp.", n.bins=500, add.contours=F)
 #' }
 
 
 
 
-plot.heat <- function(hu=NULL, td=NULL, ta, xlim=NULL, ylim=range(ta, na.rm=T), heat.index=NULL,  breaks.index=NULL, title=NULL, cex.main=1.5, xlab=NULL, ylab=NULL, n.bins=500, add.points=TRUE, add.contours=TRUE, unit.text=NULL, cex.unit=1, cex.textcbar=1.3){
+plotFun.heat <- function(hu=NULL, td=NULL, ta, xlim=NULL, ylim=range(ta, na.rm=T), heat.index=NULL,  breaks.index=NULL, title=NULL, cex.main=1.5, xlab=NULL, ylab=NULL, n.bins=500, add.points=TRUE, add.contours=TRUE, unit.text=NULL, cex.unit=1, cex.textcbar=1.3){
 
  
 	if(n.bins>100) message("Patience: number of bins is ", n.bins)
@@ -112,7 +112,7 @@ plot.heat <- function(hu=NULL, td=NULL, ta, xlim=NULL, ylim=range(ta, na.rm=T), 
 
 	# add color bar
 	par(mar=c(3,0.6,3,4.5))
-	plot.colorbar(round(breaks.index,4), palette=cols, unit.text, cex.unit, cex.textcbar)
+	plotFun.colorbar(round(breaks.index,4), palette=cols, unit.text, cex.unit, cex.textcbar)
 
 }
 

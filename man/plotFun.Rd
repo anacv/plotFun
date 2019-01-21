@@ -16,15 +16,15 @@ The package \code{plotFun} provides helper functions to plot meteorological data
 The following plotting functions are implemented:
  \itemize{
  
- \item \code{plot.Stn}: Plot a map of stations.
- \item \code{plot.Grid}: Plot a map of a regular grid.
- \item \code{plot.TimeSeries}: Plot time series with or without temporal aggregation.
- \item \code{plot.kde2d.hist}: Plot a 2D Kernel density plot with the histograms of the marginal distributions.
- \item \code{plot.heat}: Plot heat index as a function of the input variables.
+ \item \code{plotFun.stn}: Plot a map of stations.
+ \item \code{plotFun.grid}: Plot a map of a regular grid.
+ \item \code{plotFun.ts}: Plot time series with or without temporal aggregation.
+ \item \code{plotFun.kde2d.hist}: Plot a 2D Kernel density plot with the histograms of the marginal distributions.
+ \item \code{plotFun.heat}: Plot heat index as a function of the input variables.
  
  
  Additional functions:  
- \item \code{data.agg}: Function to obtain temporal aggregations (from hours to days and from days to months, seasons or years).
+ \item \code{data_agg}: Function to obtain temporal aggregations (from hours to days and from days to months, seasons or years).
  \item \code{sort4plot}: Funtion to sort the data in ascending order before plot.
  }
 }

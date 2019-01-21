@@ -26,7 +26,7 @@
 #' @param export.format "png" or "pdf" format.
 #' @param lon.points vector of longitudes for grid points to be marked in the map.
 #' @param lat.points vector of latitudes for grid points to be marked in the map.
-#' @export plot.Grid
+#' @export plotFun.grid
 #' @details Packages classInt and maps needed.
 #' @import classInt maps
 #' @author Ana Casanueva (24.05.2017)
@@ -36,10 +36,10 @@
 #' y <- seq(35,55); n=length(y)
 #' tas <- array(runif(n*m*6, -5, 30), dim=c(6,m,n)) # time, lon lat.
 #' # Single plot
-#' plot.Grid(tas[1,,], lon=x, lat = y, lonLims = c(-10,30), latLims = c(35,65), width.cbar = 0.2, 
+#' plotFun.grid(tas[1,,], lon=x, lat = y, lonLims = c(-10,30), latLims = c(35,65), width.cbar = 0.2, 
 #' breaks = seq(10,20), title.main = "Mean Temp.", unit.text = "degC", cex.main=1.5)
 #' # Multi-plots
-#' plot.Grid(list(tas[1,,], tas[2,,], tas[3,,], tas[4,,], tas[5,,], tas[6,,]), 
+#' plotFun.grid(list(tas[1,,], tas[2,,], tas[3,,], tas[4,,], tas[5,,], tas[6,,]), 
 #' lon=x, lat = y, lonLims = c(-10,30), latLims = c(35,65), lattice=c(2,3), width.cbar = 0.1, 
 #' breaks = seq(10,20), window.height = 8, window.width = 12, 
 #' title.single = c("Temp1","Temp2","Temp3","Temp4","Temp5","Temp6"), cex.single = 1.3, 
@@ -48,7 +48,7 @@
 
 
 
-plot.Grid <- function(data, lon, lat, lonLims=c(min(lon),max(lon)), latLims=c(min(lat),max(lat)), lattice=NULL, breaks= NULL, palette=rainbow(10), window.width=8, window.height=6, title.main=NULL, title.single=NULL,  unit.text=NULL, cex.main=1,  cex.single=1, cex.unit=1, cex.textcbar=1, width.cbar=0.1, disp.warnings=FALSE, export=FALSE, export.format=NULL, export.path=NULL, lon.points=NA, lat.points=NA){
+plotFun.grid <- function(data, lon, lat, lonLims=c(min(lon),max(lon)), latLims=c(min(lat),max(lat)), lattice=NULL, breaks= NULL, palette=rainbow(10), window.width=8, window.height=6, title.main=NULL, title.single=NULL,  unit.text=NULL, cex.main=1,  cex.single=1, cex.unit=1, cex.textcbar=1, width.cbar=0.1, disp.warnings=FALSE, export=FALSE, export.format=NULL, export.path=NULL, lon.points=NA, lat.points=NA){
 
 	# Verification checks 
 	try(if(export & is.null(export.format)) stop("Cannot save plot: missing export.format"))
@@ -72,11 +72,11 @@ plot.Grid <- function(data, lon, lat, lonLims=c(min(lon),max(lon)), latLims=c(mi
 		if(is.null(breaks)) breaks <- set.Breaks(data)
 		
 		# Plot
-		plot.Grid1(data, lon, lat, lonLims, latLims, breaks, palette, cex.main, title.main, lon.points=lon.points, lat.points=lat.points)
+		plotFun.grid1(data, lon, lat, lonLims, latLims, breaks, palette, cex.main, title.main, lon.points=lon.points, lat.points=lat.points)
 
 		# Include colorbar
 		par(mar=c(3,0.6,3,5))
-		plot.colorbar(breaks, palette, unit.text, cex.unit, cex.textcbar)
+		plotFun.colorbar(breaks, palette, unit.text, cex.unit, cex.textcbar)
 
 	} else{
 		# Number of real plots to make
@@ -110,7 +110,7 @@ plot.Grid <- function(data, lon, lat, lonLims=c(min(lon),max(lon)), latLims=c(mi
 
 		# Plot subplots
 		for (i in 1:n){
-			plot.Grid1(data[[i]], lon, lat, lonLims, latLims, breaks, palette, cex.single, title.single[i], lon.points=lon.points, lat.points=lat.points)
+			plotFun.grid1(data[[i]], lon, lat, lonLims, latLims, breaks, palette, cex.single, title.single[i], lon.points=lon.points, lat.points=lat.points)
 		}
 
 		# Fill with empty plots when necessary (i.e. to fill the matrix)
@@ -124,60 +124,11 @@ plot.Grid <- function(data, lon, lat, lonLims=c(min(lon),max(lon)), latLims=c(mi
 
 		# Include colorbar
 		par(mar=c(3,0.6,3,4))
-		plot.colorbar(breaks, palette, unit.text, cex.unit, cex.textcbar)
+		plotFun.colorbar(breaks, palette, unit.text, cex.unit, cex.textcbar)
 		# Plot title
 		mtext(title.main, outer = TRUE, cex = cex.main)
 	}
 
 	if (export & !is.null(export.format) & !is.null(export.path)) dev.off()
 }
-
-#' Plot grid (single plot).
-#' 
-#' Plot a figure based on a regular grid, for a single plot.
-#' 
-#' @param x matrix to be plotted. 
-#' @param lon array of longitudes
-#' @param lat array of latitudes
-#' @param lonLims 2-elemtent vector with the range of longitudes to be plotted. By default all the data is plotted.
-#' @param latLims 2-elemtent vector with the range of latitudes to be plotted. By default all the data is plotted.
-#' @param breaks vector of values defining the intervals to be used in the colorbar. 
-#' @param palette character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.
-#' @param title.main character string with the title.
-#' @param cex.main numeric value giving the title expansion factor. Default: 1.
-#' @param lon.points vector of longitudes for grid points to be marked in the map.
-#' @param lat.points vector of latitudes for grid points to be marked in the map.
-#'
-#' @author Ana Casanueva (16.02.2017)
-#' 
-
-plot.Grid1 <- function(x, lon, lat, lonLims,latLims,  breaks= breaks, palette=palette, cex.main, title.main, lon.points=lon.points, lat.points=lat.points) {
-
-	# Plot subregion or not
-	ind.x <- which(lon >= lonLims[1] & lon <= lonLims[2])
-	ind.y <- which(lat >= latLims[1] & lat <= latLims[2])
-	lon <- lon[ind.x]
-	lat <- lat[ind.y]
-	x <- x[ind.x, ind.y]
-
-	# Number of intervals to plot
-	lev <- length(breaks)-1; 
-
-	# Interpolate palette to the number of levels
-	cols <- colorRampPalette(palette)(lev)
-
-	# set values above and below the break to the maximum and minimum for plotting.
-	x[which(x<min(breaks))] <- min(breaks)
-	x[which(x>max(breaks))] <- max(breaks)
-	if(!is.null(which(x < min(breaks))) | !is.null(which(x > max(breaks))))	print("Warning: values out of the range have been set to maximum or minimum of the colorbar")
-
-	# plot map
-	par(mar=c(0.3,0.3,2,0)) # reduce space around plot
-	image(lon, lat, x, breaks= breaks, col=cols, main=title.main, cex.main=cex.main, xaxt="n", yaxt="n", xlab=NA, ylab=NA)
-	points(lon.points, lat.points, lwd=2, cex=1.5)
-	map(add=T)
-}
-
-
-
 

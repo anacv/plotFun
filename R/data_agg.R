@@ -19,17 +19,17 @@
 #' data.day <- array(runif(length(dates.day)*2, -5, 30), dim=c(length(dates.day),2)) 
 #' data.hour <- rnorm(length(dates.hour), mean=15, sd=2)
 #' # Aggregate from daily to annual
-#' data.agg(data.day, dates.day, agg="Y", aggFun="mean") 
+#' data_agg(data.day, dates.day, agg="Y", aggFun="mean") 
 #' # Aggregate from daily to monthly
-#' data.agg(data.day, dates.day, agg="M", aggFun="max") 
+#' data_agg(data.day, dates.day, agg="M", aggFun="max") 
 #' # Aggregate from daily to seasonal
-#' data.agg(data.day, dates.day, agg="S", aggFun="min") 
+#' data_agg(data.day, dates.day, agg="S", aggFun="min") 
 #' # Aggregate from hourly to daily
-#' data.agg(data.hour, dates.hour, agg="D", aggFun="mean") 
+#' data_agg(data.hour, dates.hour, agg="D", aggFun="mean") 
 #' }
  
 
-data.agg <- function(data, dates, agg=NULL, aggFun="mean", input.mch=FALSE){
+data_agg <- function(data, dates, agg=NULL, aggFun="mean", input.mch=FALSE){
  
 
   data <- as.matrix(data) # to avoid problems with 1 station (vector)
@@ -190,4 +190,4 @@ data.agg <- function(data, dates, agg=NULL, aggFun="mean", input.mch=FALSE){
   res <- list(data.agg=df, dates.agg=dates.agg, agg= agg, aggFun=aggFun)
   return(res)
 
-} # end data.agg
+} # end data_agg

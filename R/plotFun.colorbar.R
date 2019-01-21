@@ -11,7 +11,7 @@
 #' @author Ana Casanueva (16.02.2017)
 #' 
 
-plot.colorbar <- function(breaks, palette=palette, unit.text, cex.unit, cex.textcbar) {
+plotFun.colorbar <- function(breaks, palette=palette, unit.text, cex.unit, cex.textcbar) {
   
   
   # noo only write some labels, but all colours!!

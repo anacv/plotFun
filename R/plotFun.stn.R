@@ -27,7 +27,7 @@
 #' @param export logical. If TRUE, the figure is exported as pdf file. Default: False.
 #' @param export.path path (including file name) to save the plot.
 #' @param export.format "png" or "pdf" format.
-#' @export plot.Stn
+#' @export plotFun.stn
 #' @details Packages classInt and maps needed.
 #' @import classInt maps 
 #' @author Ana Casanueva (17.02.2017)
@@ -37,17 +37,17 @@
 #' longitude = c(6,-5)
 #' latitude = c(46, 40)
 #' # Single plot
-#' plot.Stn(apply(tas,2, mean, na.rm=T), lon=longitude, lat = latitude, xlims = c(-10,30), 
+#' plotFun.stn(apply(tas,2, mean, na.rm=T), lon=longitude, lat = latitude, xlims = c(-10,30), 
 #' ylims = c(35,65), width.cbar = 0.2, breaks = seq(10,20), title.main = "Mean Temp.", 
 #' unit.text = "degC", cex.main=1.5, cex.marker = 2)
 #' # Multi-plots
-#' plot.Stn(tas[1:2,], lon=longitude, lat = latitude, xlims = c(-10,30), ylims = c(35,65), 
+#' plotFun.stn(tas[1:2,], lon=longitude, lat = latitude, xlims = c(-10,30), ylims = c(35,65), 
 #' width.cbar = 0.15, breaks = seq(10,20), window.height = 10, window.width = 6, 
 #' title.single = c("Temp1","Temp2"), cex.single = 1.3, title.main = "Station plot", cex.main = 2, 
 #' unit.text = "degC")
 #' }
 
-plot.Stn <- function(data, lon, lat, xlims, ylims, lattice=NULL, breaks= NULL, palette=rainbow(10), window.width=8, window.height=6,  title.main=NULL, title.single=NULL,  unit.text=NULL, mark.border=TRUE, cex.marker=1, cex.main=1,  cex.single=1, cex.unit=1, cex.textcbar=1, width.cbar=0.1, disp.warnings=FALSE, axis.lab=FALSE, export=FALSE, export.format=NULL, export.path=NULL){
+plotFun.stn <- function(data, lon, lat, xlims, ylims, lattice=NULL, breaks= NULL, palette=rainbow(10), window.width=8, window.height=6,  title.main=NULL, title.single=NULL,  unit.text=NULL, mark.border=TRUE, cex.marker=1, cex.main=1,  cex.single=1, cex.unit=1, cex.textcbar=1, width.cbar=0.1, disp.warnings=FALSE, axis.lab=FALSE, export=FALSE, export.format=NULL, export.path=NULL){
 
 	# Verification checks 
 	try(if(export & is.null(export.format)) stop("Cannot save plot: missing export.format"))
@@ -71,11 +71,11 @@ plot.Stn <- function(data, lon, lat, xlims, ylims, lattice=NULL, breaks= NULL, p
 		if(is.null(breaks)) breaks <- set.Breaks(data)
 		
 		# Plot
-		plot.Stations1(data, lon, lat, xlims, ylims, breaks, palette, cex.marker, cex.main, title.main, axis.lab, mark.border=mark.border)
+		plotFun.stn1(data, lon, lat, xlims, ylims, breaks, palette, cex.marker, cex.main, title.main, axis.lab, mark.border=mark.border)
 
 		# Include colorbar
 		par(mar=c(3,0.6,3,5))
-		plot.colorbar(breaks, palette, unit.text, cex.unit, cex.textcbar)
+		plotFun.colorbar(breaks, palette, unit.text, cex.unit, cex.textcbar)
 
 	} else{
 		# Number of real plots to make
@@ -110,7 +110,7 @@ plot.Stn <- function(data, lon, lat, xlims, ylims, lattice=NULL, breaks= NULL, p
 
 		# Plot subplots
 		for (i in 1:nrow(data)){
-			plot.Stations1(data[i,], lon, lat, xlims, ylims, breaks, palette, cex.marker, cex.single, title.single[i], axis.lab, mark.border=mark.border)
+			plotFun.stn1(data[i,], lon, lat, xlims, ylims, breaks, palette, cex.marker, cex.single, title.single[i], axis.lab, mark.border=mark.border)
 		}
 
 		# Fill with empty plots when necessary (i.e. to fill the matrix)
@@ -124,67 +124,11 @@ plot.Stn <- function(data, lon, lat, xlims, ylims, lattice=NULL, breaks= NULL, p
 
 		# Include colorbar
 		par(mar=c(3,0.6,3,4))
-		plot.colorbar(breaks, palette, unit.text, cex.unit, cex.textcbar)
+		plotFun.colorbar(breaks, palette, unit.text, cex.unit, cex.textcbar)
 		# Plot title
 		mtext(title.main, outer = TRUE, cex = cex.main)
 	}
 
 	if (export & !is.null(export.format) & !is.null(export.path)) dev.off()
-}
-
-#' Plot stations (single plot).
-#' 
-#' Plot a figure based on point stations, for a single plot.
-#' 
-#' @param x vector to be plotted. 
-#' @param lon vector of longitudes. It must have the same length as x.
-#' @param lat vector of latitudes. It must have the same length as x.
-#' @param xlims 2-element vector defining the minimum and maximum longitud for the plotting area.
-#' @param ylims 2-element vector defining the minimum and maximum latitude for the plotting area.
-#' @param breaks vector of values defining the intervals to be used in the colorbar. 
-#' @param palette character vector with the colors for the plot. They will be interpolated to match the number of intervals defined by breaks.
-#' @param title.main character string with the title.
-#' @param cex.marker numeric value giving the marker expansion factor. Default: 1.
-#' @param cex.main numeric value giving the title expansion factor. Default: 1.
-#' @param mark.border logical. If black contour for the cicles is plotted. Default=TRUE.
-#' @param axis.lab display or not lon/lat ticks and labels. Default=FALSE
-#'
-#' @author Ana Casanueva (16.02.2017)
-#' 
-
-plot.Stations1 <- function(x, lon, lat, xlims, ylims, breaks= breaks, palette=palette, cex.marker, cex.main, title.main, axis.lab, mark.border=mark.border) {
-
-	if(length(lon)== length(x) & length(lat)== length(x) & length(lon)== length(lat)){
-
-		# Number of intervals to plot
-		lev <- length(breaks)-1; 
-
-		# Interpolate palette to the number of levels
-		cols <- colorRampPalette(palette)(lev)
-
-		### The follwoing gives problems, sometimes fixed changes to unique alone! Solution below.
-		## Set the values in x to the intervals and assing colours 	
-		#class <- classInt::classIntervals(x, lev,  style = "fixed", fixedBreaks=breaks)
-    ##		class <- classInt::classIntervals(x, style = "fixed", fixedBreaks=breaks)
-		#print(paste("Plot using style", attr(class,"style"),sep=" "))
-		#colcode <- classInt::findColours(class,cols)
-		#pos.colour <- findInterval(x, breaks, rightmost.closed = TRUE)
-		pos.colour <- findInterval(x, breaks, all.inside = TRUE)
-		colcode <- cols[pos.colour]
-		  
-		# Plot
-		maps::map(xlim=xlims, ylim=ylims, mar=c(0,0.3,2,0)) # set mar to reduce space between plots
-		if(axis.lab==FALSE) maps::map.axes(labels = FALSE, tick = FALSE) # no lon,lat labels
-		if(axis.lab==TRUE) maps::map.axes()
-		if(mark.border==TRUE){
-		  points(lon,lat, cex=cex.marker, pch=21, bg=colcode, col="black") 
-		} else{
-		  points(lon,lat, cex=cex.marker, pch=16, col=colcode)
-		}
-		#
-
-		title(main= title.main, cex.main=cex.main, line=0)
-	} else stop("Number of stations does not match the data size")
-
 }
 

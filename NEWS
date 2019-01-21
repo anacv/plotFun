@@ -1,3 +1,7 @@
-* Changes in v.1.0.1
+* Changes in v1.0.2
+
+Change function names to avoid S3 methods.
+
+* Changes in v1.0.1
 
 Package ready to use
