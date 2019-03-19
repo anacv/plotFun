@@ -5,7 +5,8 @@
 \title{Plot stations (single plot).}
 \usage{
 plotFun.stn1(x, lon, lat, xlims, ylims, breaks = breaks, palette = palette,
-  cex.marker, cex.main, title.main, axis.lab, mark.border = mark.border)
+  cex.marker, cex.main, title.main, axis.lab, mark.border = mark.border,
+  text = NULL, cex.text = 1)
 }
 \arguments{
 \item{x}{vector to be plotted.}
@@ -31,6 +32,10 @@ plotFun.stn1(x, lon, lat, xlims, ylims, breaks = breaks, palette = palette,
 \item{axis.lab}{display or not lon/lat ticks and labels. Default=FALSE}
 
 \item{mark.border}{logical. If black contour for the cicles is plotted. Default=TRUE.}
+
+\item{text}{display some text in each point. Length should be the same as lat and lon.}
+
+\item{cex.cex}{numeric value giving the text expansion factor. Default: 1.}
 }
 \description{
 Plot a figure based on point stations, for a single plot.

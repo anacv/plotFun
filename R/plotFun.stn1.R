@@ -14,11 +14,15 @@
 #' @param cex.main numeric value giving the title expansion factor. Default: 1.
 #' @param mark.border logical. If black contour for the cicles is plotted. Default=TRUE.
 #' @param axis.lab display or not lon/lat ticks and labels. Default=FALSE
+#' @param text display some text in each point. Length should be the same as lat and lon.
+#' @param cex.cex numeric value giving the text expansion factor. Default: 1.
 #'
 #' @author Ana Casanueva (16.02.2017)
 #' 
 
-plotFun.stn1 <- function(x, lon, lat, xlims, ylims, breaks= breaks, palette=palette, cex.marker, cex.main, title.main, axis.lab, mark.border=mark.border) {
+plotFun.stn1 <- function(x, lon, lat, xlims, ylims, breaks= breaks, palette=palette, cex.marker, 
+                         cex.main, title.main, axis.lab, mark.border=mark.border,
+                         text=NULL, cex.text=1) {
   
   if(length(lon)== length(x) & length(lat)== length(x) & length(lon)== length(lat)){
     
@@ -48,7 +52,11 @@ plotFun.stn1 <- function(x, lon, lat, xlims, ylims, breaks= breaks, palette=pale
       points(lon,lat, cex=cex.marker, pch=16, col=colcode)
     }
     #
-    
+    if(!is.null(text)){
+      if(length(text)==length(lon)){
+       text(lon, lat, labels=text, cex=cex.text) 
+      } else stop("Text length does not match the number of points.") 
+    }
     title(main= title.main, cex.main=cex.main, line=0)
   } else stop("Number of stations does not match the data size")
   
