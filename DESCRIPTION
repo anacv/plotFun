@@ -1,8 +1,8 @@
 Package: plotFun
 Type: Package
 Title: Helper functions for plotting data
-Version: 1.0.3
-Date: 2019-03-19
+Version: 1.0.4
+Date: 2019-03-22
 Author: A. Casanueva
 Maintainer: A.Casanueva <ana.casanueva@meteoswiss.ch>
 Description: Helper functions for plotting data.
