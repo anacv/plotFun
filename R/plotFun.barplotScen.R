@@ -20,6 +20,7 @@
 #' @param lines values in the Y-axis to plot a horizontal line.
 #' @param pch.obs type of marker for the observations. Default:8.
 #' @param cex.obs relative size for the marker representing the observations. Default: 1.5.
+#' @export plotFun.barplotScen
 #' 
 #' @return A bar plot consisting on 4 bars (e.g. historical and 3 future periods) and highlight the observations with a markers. Uncertainty is shown though small segments.
 #'
