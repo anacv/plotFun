@@ -4,6 +4,7 @@
 
 **plotFun** is a R package with helper functions for plotting meteorological data. It has been developed in the framework of the Horizon2020 [HEAT-SHIELD project](https://www.heat-shield.eu).
 
+[![DOI](https://zenodo.org/badge/165884416.svg)](https://zenodo.org/badge/latestdoi/165884416)
 
 ****
 
@@ -26,6 +27,7 @@ See e.g. ```?plotFun.stn``` for examples.
 
 
 ### Reference and further information: 
+[![DOI](https://zenodo.org/badge/165884416.svg)](https://zenodo.org/badge/latestdoi/165884416)
 
 This package was used in the following publications:
 * Casanueva et al. 2019. Climate projections of a multi-variate heat stress index: the role of downscaling and bias correction, *Geoscientific Model Development*, https://www.geosci-model-dev-discuss.net/gmd-2018-294/
