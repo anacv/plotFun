@@ -16,14 +16,13 @@ devtools::install_github("anacv/plotFun")
 ```
 
 The following plotting functions are available:
-\itemize{
-\item \code{plotFun.stn}: Plot a map of stations.
-\item \code{plotFun.grid}: Plot a map of a regular grid.
-\item \code{plotFun.ts}: Plot time series with or without temporal aggregation.
-\item \code{plotFun.kde2d.hist}: Plot a 2D Kernel density plot with the histograms of the marginal distributions.
-\item \code{plotFun.heat}: Plot heat index as a function of the input variables.
-}
-See e.g. \code{?plotFun.stn} for examples.
+* ```plotFun.stn```: Plot a map of stations.
+* ```plotFun.grid```: Plot a map of a regular grid.
+* ```plotFun.ts```: Plot time series with or without temporal aggregation.
+* ```plotFun.kde2d.hist```: Plot a 2D Kernel density plot with the histograms of the marginal distributions.
+* ```plotFun.heat```: Plot heat index as a function of the input variables.
+
+See e.g. ```?plotFun.stn``` for examples.
 
 
 ### Reference and further information: 
