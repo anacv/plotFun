@@ -1,2 +1,33 @@
 # plotFun
-Helper functions for plotting data
+
+## What is `plotFun`?
+
+**plotFun** is a R package with helper functions for plotting meteorological data. It has been developed in the framework of the Horizon2020 [HEAT-SHIELD project](https://www.heat-shield.eu).
+
+
+****
+
+### Installation
+
+The recommended procedure for installing the package is using the devtools package. 
+
+```R
+devtools::install_github("anacv/plotFun")
+```
+
+The following plotting functions are available:
+\itemize{
+\item \code{plotFun.stn}: Plot a map of stations.
+\item \code{plotFun.grid}: Plot a map of a regular grid.
+\item \code{plotFun.ts}: Plot time series with or without temporal aggregation.
+\item \code{plotFun.kde2d.hist}: Plot a 2D Kernel density plot with the histograms of the marginal distributions.
+\item \code{plotFun.heat}: Plot heat index as a function of the input variables.
+}
+See e.g. \code{?plotFun.stn} for examples.
+
+
+### Reference and further information: 
+
+This package was used in the following publications:
+* Casanueva et al. 2019. Climate projections of a multi-variate heat stress index: the role of downscaling and bias correction, *Geoscientific Model Development*, https://www.geosci-model-dev-discuss.net/gmd-2018-294/
+* Casanueva et al. 2019. Escalating environmental heat exposure – a future threat for the European workforce, *Regional Environmental Change*.

@@ -20,6 +20,14 @@ plotFun.barplotScen(obs, ctl, ctl.rg, p1, p1.rg, p2, p2.rg, p3, p3.rg, col,
 
 \item{p1.rg}{2-element vector with the multi.model range (e.g. 5-95th percentiles) in the short-term future period.}
 
+\item{p2}{multi-model median/mean value in the mid-term future period.}
+
+\item{p2.rg}{2-element vector with the multi.model range (e.g. 5-95th percentiles) in the mid-term future period.}
+
+\item{p3}{multi-model median/mean value in the long-term future period.}
+
+\item{p3.rg}{2-element vector with the multi.model range (e.g. 5-95th percentiles) in the long-term future period.}
+
 \item{col}{4-element vector with the colours for the four bars.}
 
 \item{ylab}{character string for the Y-axis.}
@@ -37,14 +45,6 @@ plotFun.barplotScen(obs, ctl, ctl.rg, p1, p1.rg, p2, p2.rg, p3, p3.rg, col,
 \item{pch.obs}{type of marker for the observations. Default:8.}
 
 \item{cex.obs}{relative size for the marker representing the observations. Default: 1.5.}
-
-\item{p1}{multi-model median/mean value in the mid-term future period.}
-
-\item{p1.rg}{2-element vector with the multi.model range (e.g. 5-95th percentiles) in the mid-term future period.}
-
-\item{p1}{multi-model median/mean value in the long-term future period.}
-
-\item{p1.rg}{2-element vector with the multi.model range (e.g. 5-95th percentiles) in the long-term future period.}
 }
 \value{
 A bar plot consisting on 4 bars (e.g. historical and 3 future periods) and highlight the observations with a markers. Uncertainty is shown though small segments.

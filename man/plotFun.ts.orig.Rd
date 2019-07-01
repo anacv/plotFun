@@ -4,9 +4,10 @@
 \alias{plotFun.ts.orig}
 \title{Plot time series.}
 \usage{
-plotFun.ts.orig(data, dates, hour = FALSE, agg = NULL, aggFun = "mean",
-  season = NULL, output.data = FALSE, stn.together = FALSE,
-  col.lines = rainbow(10), title = NULL, input.mch = FALSE)
+plotFun.ts.orig(data, dates, hour = FALSE, agg = NULL,
+  aggFun = "mean", season = NULL, output.data = FALSE,
+  stn.together = FALSE, col.lines = rainbow(10), title = NULL,
+  input.mch = FALSE)
 }
 \arguments{
 \item{data}{Matrix with the data to be plotted (time steps in rows, stations in columns). The column names are used for labels in the plot, otherwise a,b,c,... are used.}

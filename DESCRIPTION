@@ -1,14 +1,14 @@
 Package: plotFun
 Type: Package
 Title: Helper functions for plotting data
-Version: 1.0.4
-Date: 2019-03-22
+Version: 1.0.5
+Date: 2019-07-01
 Author: A. Casanueva
 Maintainer: A.Casanueva <ana.casanueva@meteoswiss.ch>
 Description: Helper functions for plotting data.
 License: file LICENSE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Depends: R (>= 2.10.0)
 Suggests: testthat, assertthat
 Imports: stats, HeatStress (>= 1.0.4), MASS, RColorBrewer, classInt, maps, lubridate
-Encoding: ISO-8859-1
+Encoding: UTF-8

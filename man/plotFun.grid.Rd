@@ -73,7 +73,7 @@ Packages classInt and maps needed.
 # Generate data
 x <- seq(-5, 20); m= length(x)
 y <- seq(35,55); n=length(y)
-tas <- array(runif(n*m*6, -5, 30), dim=c(6,m,n)) # time, lon lat.
+tas <- array(runif(n*m*6, -5, 30), dim=c(6,m,n)) # time, lon, lat.
 # Single plot
 plotFun.grid(tas[1,,], lon=x, lat = y, lonLims = c(-10,30), latLims = c(35,65), width.cbar = 0.2, 
 breaks = seq(10,20), title.main = "Mean Temp.", unit.text = "degC", cex.main=1.5)

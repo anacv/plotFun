@@ -15,7 +15,7 @@
 #' @param mark.border logical. If black contour for the cicles is plotted. Default=TRUE.
 #' @param axis.lab display or not lon/lat ticks and labels. Default=FALSE
 #' @param text display some text in each point. Length should be the same as lat and lon.
-#' @param cex.cex numeric value giving the text expansion factor. Default: 1.
+#' @param cex.text numeric value giving the text expansion factor. Default: 1.
 #'
 #' @author Ana Casanueva (16.02.2017)
 #' 

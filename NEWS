@@ -1,15 +1,19 @@
-* Changes in v1.0.4
+Changes in v1.0.5 
 
-Add new function plotFun.barplotScen.
+ * Add documentation.
+ 
+Changes in v1.0.4
 
-* Changes in v1.0.3
+ * Add new function plotFun.barplotScen.
 
-Allow plotFun.stn to plot text on markers place.
+Changes in v1.0.3
 
-* Changes in v1.0.2
+ * Allow plotFun.stn to plot text on markers place.
 
-Change function names to avoid S3 methods.
+Changes in v1.0.2
 
-* Changes in v1.0.1
+ * Change function names to avoid S3 methods.
 
-Package ready to use
+Changes in v1.0.1
+
+ * Package ready to use

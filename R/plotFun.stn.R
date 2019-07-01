@@ -24,7 +24,7 @@
 #' @param width.cbar numeric value giving the fraction of the plot (from 0 to 1) reserved for the colorbar. Modify this argument for a better appearance. Default=0.1
 #' @param axis.lab display or not lon/lat ticks and labels. Default=FALSE
 #' @param text display some text in each point. Length should be the same as lat and lon.
-#' @param cex.cex numeric value giving the text expansion factor. Default: 1.
+#' @param cex.text numeric value giving the text expansion factor. Default: 1.
 #' @param disp.warnings logical to set if warnings shoul be displayed.
 #' @param export logical. If TRUE, the figure is exported as pdf file. Default: False.
 #' @param export.path path (including file name) to save the plot.

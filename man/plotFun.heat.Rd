@@ -4,11 +4,12 @@
 \alias{plotFun.heat}
 \title{Plot heat index as a function of the input variables.}
 \usage{
-plotFun.heat(hu = NULL, td = NULL, ta, xlim = NULL, ylim = range(ta,
-  na.rm = T), heat.index = NULL, breaks.index = NULL, title = NULL,
-  cex.main = 1.5, xlab = NULL, ylab = NULL, n.bins = 500,
-  add.points = TRUE, add.contours = TRUE, unit.text = NULL,
-  cex.unit = 1, cex.textcbar = 1.3)
+plotFun.heat(hu = NULL, td = NULL, ta, xlim = NULL,
+  ylim = range(ta, na.rm = T), heat.index = NULL,
+  breaks.index = NULL, title = NULL, cex.main = 1.5, xlab = NULL,
+  ylab = NULL, n.bins = 500, add.points = TRUE,
+  add.contours = TRUE, unit.text = NULL, cex.unit = 1,
+  cex.textcbar = 1.3)
 }
 \arguments{
 \item{hu}{vector with relative humidity data. \code{hu} or \code{td} are mandatory.}

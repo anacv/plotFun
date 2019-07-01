@@ -5,10 +5,10 @@
 \title{Wrapper function for plotFun.ts.orig.}
 \usage{
 plotFun.ts(data, dates, hour = FALSE, agg = NULL, aggFun = "mean",
-  season = NULL, export = FALSE, outDir = "current", outNam = "plot1",
-  outDev = "pdf", title = NULL, input.mch = FALSE, window.width = NULL,
-  window.height = NULL, output.data = FALSE, stn.together = FALSE,
-  col.lines = rainbow(10))
+  season = NULL, export = FALSE, outDir = "current",
+  outNam = "plot1", outDev = "pdf", title = NULL,
+  input.mch = FALSE, window.width = NULL, window.height = NULL,
+  output.data = FALSE, stn.together = FALSE, col.lines = rainbow(10))
 }
 \arguments{
 \item{data}{Matrix with the data to be plotted (time steps in rows, stations in columns). The column names are used for labels in the plot, otherwise a,b,c,... are used.}

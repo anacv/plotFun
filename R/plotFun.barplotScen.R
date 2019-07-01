@@ -7,10 +7,10 @@
 #' @param ctl.rg 2-element vector with the multi.model range (e.g. 5-95th percentiles) in the historical period.
 #' @param p1 multi-model median/mean value in the short-term future period.
 #' @param p1.rg 2-element vector with the multi.model range (e.g. 5-95th percentiles) in the short-term future period.
-#' @param p1 multi-model median/mean value in the mid-term future period.
-#' @param p1.rg 2-element vector with the multi.model range (e.g. 5-95th percentiles) in the mid-term future period.
-#' @param p1 multi-model median/mean value in the long-term future period.
-#' @param p1.rg 2-element vector with the multi.model range (e.g. 5-95th percentiles) in the long-term future period.
+#' @param p2 multi-model median/mean value in the mid-term future period.
+#' @param p2.rg 2-element vector with the multi.model range (e.g. 5-95th percentiles) in the mid-term future period.
+#' @param p3 multi-model median/mean value in the long-term future period.
+#' @param p3.rg 2-element vector with the multi.model range (e.g. 5-95th percentiles) in the long-term future period.
 #' @param col 4-element vector with the colours for the four bars.
 #' @param ylab character string for the Y-axis.
 #' @param xlab 4-element vector to label the bars. 

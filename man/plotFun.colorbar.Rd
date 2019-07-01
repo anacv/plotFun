@@ -4,7 +4,8 @@
 \alias{plotFun.colorbar}
 \title{Plot the colorbar.}
 \usage{
-plotFun.colorbar(breaks, palette = palette, unit.text, cex.unit, cex.textcbar)
+plotFun.colorbar(breaks, palette = palette, unit.text, cex.unit,
+  cex.textcbar)
 }
 \arguments{
 \item{breaks}{vector of values defining the intervals to be used in the colorbar.}
