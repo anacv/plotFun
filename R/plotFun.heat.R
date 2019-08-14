@@ -1,9 +1,9 @@
 #' Plot heat index as a function of the input variables.
 #' 
-#' The index is calculated with the R package \code{HeatStress} or provided by the user.
+#' Plot heat index as a function of the input variables. The index is calculated with the R package \code{HeatStress} or provided as a vector by the user.
 #'
 #' @param hu vector with data for the variable to be plotted in the X-axis or relative humidity data. \code{hu} or \code{td} are mandatory.
-#' @param td vector with data for the variable to be plotted in the X-axis or dew point temperature data.\code{hu} or \code{td} are mandatory.
+#' @param td vector with data for the variable to be plotted in the X-axis or dew point temperature data. \code{hu} or \code{td} are mandatory.
 #' @param ta vector with with data for the variable to be plotted in the Y-axis or temperature data.
 #' @param heat.index vector with data to plot with colour markers or character with the heat index to plot as a function of the two input variables. Available (based on 2 variables): swbgt, hi, wbt.Stull, wbgt.Bernard, apparentTemp, effectiveTemp, humidex, discomInd.
 #' @param xlim 2-element vector with X-axis limits for the density plot. Default: range of hu/td.
@@ -11,7 +11,7 @@
 #' @param breaks.index vector of breaks for the heat index values. By default, breaks is adjusted to the minimum and maximum values of the index.
 #' @param n.bins number of bins for kernel density calculation, only when 'heat.index' is a character. Default= 500
 #' @param add.contours logical. Add (default) or not contours for heat index values. It is only valid when 'heat.index' is a character.
-#' @param add.points logical. Add (default) or not points with the actual time series. It is only valid when 'heat.index' is a character
+#' @param add.points logical. Add (default) or not points with the actual time series. It is only valid when 'heat.index' is a character.
 #' @param xlab X-axis label.
 #' @param ylab Y-axis label.
 #' @param title title above the plot.
@@ -20,10 +20,10 @@
 #' @param cex.unit numeric value giving the expansion factor of the units text. Default:1.
 #' @param cex.textcbar numeric value giving the expansion factor of the colorbar text. Default:1.3.
 #' @return Scatter (if 'heat.index' is a vector) or image (if 'heat.index' is a character) plot with the heat index values as a function of the input variables.
-#' @details When 'heat.index' is a character, the index is calculated and the two input variables of the desired index need to be provided, tas and either td or hu. Needed packages: HeatStress, RColorBrewer.
-#' When 'heat.index' is a vector, the variable to be plotted in the X-axis should be included in 'hu' or 'td' and the plotted in the Y-axis in 'ta'.
+#' @details When 'heat.index' is a \strong{character}, the index is calculated and the two input variables of the desired index need to be provided, tas and either td or hu. Needed packages: HeatStress, RColorBrewer.
+#' When 'heat.index' is a \strong{vector}, the variable to be plotted in the X-axis should be included in 'hu' or 'td' and the plotted in the Y-axis in 'ta'.
 #' @import HeatStress RColorBrewer
-#' @author Ana Casanueva, 13.12.2018
+#' @author Ana Casanueva, 14.08.2019
 #' @export plotFun.heat
 #' @examples \dontrun{
 #' # Generate data
@@ -39,7 +39,11 @@
 #' # Add contours, change index
 #' plotFun.heat(td=dew, ta=tas, heat.index="wbgt.shade", title="Heat stress plot", cex.main=1.5, 
 #' xlab="Dew point temp.", ylab="Air temp.", n.bins=500, add.contours=F)
+#' # Plot only scatter plot with coloured markers
+#' hi <- runif(150, -2,5) + 90
+#' plotFun.heat(td=dew, ta=tas, heat.index = hi, ylab="Ta", xlab="Td", unit.text = "degC")
 #' }
+
 
 
 
@@ -114,7 +118,7 @@ plotFun.heat <- function(hu=NULL, td=NULL, ta, xlim=NULL, ylim=range(ta, na.rm=T
 	  } else{
 	    class <- classInt::classIntervals(heat.index, lev,  style = "fixed", fixedBreaks=breaks.index)
 	    colcode <- classInt::findColours(class,cols)
-	    plot(df$x, df$y, bg=colcode, pch=21, xaxs="i", yaxs="i", xlim= xlim, ylim=ylim,las=1, cex=2, lwd=1, xlab=NA, ylab=NA)
+	    plot(df$x, df$y, bg=colcode, pch=21, xaxs="i", yaxs="i", xlim= xlim, ylim=ylim,las=1, cex=2, lwd=1, xlab=NA, ylab=NA, cex.axis=1.5, main=title, cex.main=cex.main)
   }
 
 	# add labels for the axis

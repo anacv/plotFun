@@ -14,7 +14,7 @@ plotFun.heat(hu = NULL, td = NULL, ta, xlim = NULL,
 \arguments{
 \item{hu}{vector with data for the variable to be plotted in the X-axis or relative humidity data. \code{hu} or \code{td} are mandatory.}
 
-\item{td}{vector with data for the variable to be plotted in the X-axis or dew point temperature data.\code{hu} or \code{td} are mandatory.}
+\item{td}{vector with data for the variable to be plotted in the X-axis or dew point temperature data. \code{hu} or \code{td} are mandatory.}
 
 \item{ta}{vector with with data for the variable to be plotted in the Y-axis or temperature data.}
 
@@ -36,7 +36,7 @@ plotFun.heat(hu = NULL, td = NULL, ta, xlim = NULL,
 
 \item{n.bins}{number of bins for kernel density calculation, only when 'heat.index' is a character. Default= 500}
 
-\item{add.points}{logical. Add (default) or not points with the actual time series. It is only valid when 'heat.index' is a character}
+\item{add.points}{logical. Add (default) or not points with the actual time series. It is only valid when 'heat.index' is a character.}
 
 \item{add.contours}{logical. Add (default) or not contours for heat index values. It is only valid when 'heat.index' is a character.}
 
@@ -50,11 +50,11 @@ plotFun.heat(hu = NULL, td = NULL, ta, xlim = NULL,
 Scatter (if 'heat.index' is a vector) or image (if 'heat.index' is a character) plot with the heat index values as a function of the input variables.
 }
 \description{
-The index is calculated with the R package \code{HeatStress} or provided by the user.
+Plot heat index as a function of the input variables. The index is calculated with the R package \code{HeatStress} or provided as a vector by the user.
 }
 \details{
-When 'heat.index' is a character, the index is calculated and the two input variables of the desired index need to be provided, tas and either td or hu. Needed packages: HeatStress, RColorBrewer.
-When 'heat.index' is a vector, the variable to be plotted in the X-axis should be included in 'hu' or 'td' and the plotted in the Y-axis in 'ta'.
+When 'heat.index' is a \strong{character}, the index is calculated and the two input variables of the desired index need to be provided, tas and either td or hu. Needed packages: HeatStress, RColorBrewer.
+When 'heat.index' is a \strong{vector}, the variable to be plotted in the X-axis should be included in 'hu' or 'td' and the plotted in the Y-axis in 'ta'.
 }
 \examples{
 \dontrun{
@@ -71,8 +71,11 @@ xlab="Relative Humidity", ylab="Air temp.", n.bins=500, add.points=F)
 # Add contours, change index
 plotFun.heat(td=dew, ta=tas, heat.index="wbgt.shade", title="Heat stress plot", cex.main=1.5, 
 xlab="Dew point temp.", ylab="Air temp.", n.bins=500, add.contours=F)
+# Plot only scatter plot with coloured markers
+hi <- runif(150, -2,5) + 90
+plotFun.heat(td=dew, ta=tas, heat.index = hi, ylab="Ta", xlab="Td", unit.text = "degC")
 }
 }
 \author{
-Ana Casanueva, 13.12.2018
+Ana Casanueva, 14.08.2019
 }
