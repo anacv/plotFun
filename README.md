@@ -30,5 +30,5 @@ See e.g. ```?plotFun.stn``` for examples.
 [![DOI](https://zenodo.org/badge/165884416.svg)](https://zenodo.org/badge/latestdoi/165884416)
 
 This package was used in the following publications:
-* Casanueva et al. 2019. Climate projections of a multi-variate heat stress index: the role of downscaling and bias correction, *Geoscientific Model Development*, https://www.geosci-model-dev-discuss.net/gmd-2018-294/
+* Casanueva et al. 2019. Climate projections of a multi-variate heat stress index: the role of downscaling and bias correction, *Geoscientific Model Development*, https://www.geosci-model-dev.net/12/3419/2019/
 * Casanueva et al. 2019. Escalating environmental heat exposure – a future threat for the European workforce, *Regional Environmental Change*.

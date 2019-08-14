@@ -12,17 +12,17 @@ plotFun.heat(hu = NULL, td = NULL, ta, xlim = NULL,
   cex.textcbar = 1.3)
 }
 \arguments{
-\item{hu}{vector with relative humidity data. \code{hu} or \code{td} are mandatory.}
+\item{hu}{vector with data for the variable to be plotted in the X-axis or relative humidity data. \code{hu} or \code{td} are mandatory.}
 
-\item{td}{vector with dew point temperature data.\code{hu} or \code{td} are mandatory.}
+\item{td}{vector with data for the variable to be plotted in the X-axis or dew point temperature data.\code{hu} or \code{td} are mandatory.}
 
-\item{ta}{vector with air temperature data.}
+\item{ta}{vector with with data for the variable to be plotted in the Y-axis or temperature data.}
 
 \item{xlim}{2-element vector with X-axis limits for the density plot. Default: range of hu/td.}
 
 \item{ylim}{2-element vector with Y-axis limits for the density plot. Default: range of ta.}
 
-\item{heat.index}{heat index to plot as a function of dew point/relative humidity and air temperature. Available (based on 2 variables): swbgt, hi, wbt.Stull, wbgt.Bernard, apparentTemp, effectiveTemp, humidex, discomInd.}
+\item{heat.index}{vector with data to plot with colour markers or character with the heat index to plot as a function of the two input variables. Available (based on 2 variables): swbgt, hi, wbt.Stull, wbgt.Bernard, apparentTemp, effectiveTemp, humidex, discomInd.}
 
 \item{breaks.index}{vector of breaks for the heat index values. By default, breaks is adjusted to the minimum and maximum values of the index.}
 
@@ -34,11 +34,11 @@ plotFun.heat(hu = NULL, td = NULL, ta, xlim = NULL,
 
 \item{ylab}{Y-axis label.}
 
-\item{n.bins}{number of bins for kernel density calculation. Default= 500}
+\item{n.bins}{number of bins for kernel density calculation, only when 'heat.index' is a character. Default= 500}
 
-\item{add.points}{logical. Add (default) or not points with the actual time series.}
+\item{add.points}{logical. Add (default) or not points with the actual time series. It is only valid when 'heat.index' is a character}
 
-\item{add.contours}{logical. Add (default) or not contours for heat index values.}
+\item{add.contours}{logical. Add (default) or not contours for heat index values. It is only valid when 'heat.index' is a character.}
 
 \item{unit.text}{character string to be placed in the colorbar with the units.}
 
@@ -47,13 +47,14 @@ plotFun.heat(hu = NULL, td = NULL, ta, xlim = NULL,
 \item{cex.textcbar}{numeric value giving the expansion factor of the colorbar text. Default:1.3.}
 }
 \value{
-Plot with the heat index values as a function of the input variables.
+Scatter (if 'heat.index' is a vector) or image (if 'heat.index' is a character) plot with the heat index values as a function of the input variables.
 }
 \description{
-The index is calculated with the R package \code{HeatStress}.
+The index is calculated with the R package \code{HeatStress} or provided by the user.
 }
 \details{
-The two input variables of the desired index need to be provided, tas and either td or hu. Needed packages: HeatStress, RColorBrewer.
+When 'heat.index' is a character, the index is calculated and the two input variables of the desired index need to be provided, tas and either td or hu. Needed packages: HeatStress, RColorBrewer.
+When 'heat.index' is a vector, the variable to be plotted in the X-axis should be included in 'hu' or 'td' and the plotted in the Y-axis in 'ta'.
 }
 \examples{
 \dontrun{

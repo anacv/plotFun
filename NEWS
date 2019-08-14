@@ -1,3 +1,7 @@
+Changes in v1.0.6 
+
+ * Allow plotFun.heat to plot any data in in the coloures markers.
+
 Changes in v1.0.5 
 
  * Add documentation.
