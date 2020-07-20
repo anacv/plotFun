@@ -16,13 +16,15 @@
 #' @param axis.lab display or not lon/lat ticks and labels. Default=FALSE
 #' @param text display some text in each point. Length should be the same as lat and lon.
 #' @param cex.text numeric value giving the text expansion factor. Default: 1.
-#'
+#' @param map.fill logical. If map is filled with colour in `map.col'. Default: FALSE
+#' @param map.col Colour for the map (continent). Default: grey89.
+#' 
 #' @author Ana Casanueva (16.02.2017)
 #' 
 
 plotFun.stn1 <- function(x, lon, lat, xlims, ylims, breaks= breaks, palette=palette, cex.marker, 
                          cex.main, title.main, axis.lab, mark.border=mark.border,
-                         text=NULL, cex.text=1) {
+                         text=NULL, cex.text=1, map.fill=FALSE, map.col="grey89") {
   
   if(length(lon)== length(x) & length(lat)== length(x) & length(lon)== length(lat)){
     
@@ -43,7 +45,11 @@ plotFun.stn1 <- function(x, lon, lat, xlims, ylims, breaks= breaks, palette=pale
     colcode <- cols[pos.colour]
     
     # Plot
-    maps::map(xlim=xlims, ylim=ylims, mar=c(0,0.3,2,0)) # set mar to reduce space between plots
+    if(map.fill){
+      maps::map(xlim=xlims, ylim=ylims, mar=c(0,0.3,2,0), fill=map.fill, col=map.col) # set mar to reduce space between plots
+    }else{
+      maps::map(xlim=xlims, ylim=ylims, mar=c(0,0.3,2,0)) # set mar to reduce space between plots
+    }
     if(axis.lab==FALSE) maps::map.axes(labels = FALSE, tick = FALSE) # no lon,lat labels
     if(axis.lab==TRUE) maps::map.axes()
     if(mark.border==TRUE){

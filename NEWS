@@ -1,3 +1,7 @@
+Changes in v1.0.7 
+
+ * Allow plotFun.stn to fill the background of the continent with colour.
+
 Changes in v1.0.6 
 
  * Allow plotFun.heat to plot any data in in the coloures markers.

@@ -11,7 +11,7 @@ plotFun.stn(data, lon, lat, xlims, ylims, lattice = NULL,
   cex.main = 1, cex.single = 1, cex.unit = 1, cex.textcbar = 1,
   width.cbar = 0.1, disp.warnings = FALSE, axis.lab = FALSE,
   export = FALSE, export.format = NULL, export.path = NULL,
-  text = NULL, cex.text = 1)
+  text = NULL, cex.text = 1, map.fill = FALSE, map.col = "grey89")
 }
 \arguments{
 \item{data}{vector or matrix to be plotted. When it is a matrix, a multiplot is generated (each row of data is plotted in a subplot).}
@@ -67,6 +67,10 @@ plotFun.stn(data, lon, lat, xlims, ylims, lattice = NULL,
 \item{text}{display some text in each point. Length should be the same as lat and lon.}
 
 \item{cex.text}{numeric value giving the text expansion factor. Default: 1.}
+
+\item{map.fill}{logical. If map is filled with colour in `map.col'. Default: FALSE}
+
+\item{map.col}{Colour for the map (continent). Default: grey89.}
 }
 \description{
 Plot a map with point stations, either a single plot or multiplot. A common colorbar is set for a multiplot.

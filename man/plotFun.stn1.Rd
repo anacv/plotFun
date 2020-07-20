@@ -6,7 +6,8 @@
 \usage{
 plotFun.stn1(x, lon, lat, xlims, ylims, breaks = breaks,
   palette = palette, cex.marker, cex.main, title.main, axis.lab,
-  mark.border = mark.border, text = NULL, cex.text = 1)
+  mark.border = mark.border, text = NULL, cex.text = 1,
+  map.fill = FALSE, map.col = "grey89")
 }
 \arguments{
 \item{x}{vector to be plotted.}
@@ -36,6 +37,10 @@ plotFun.stn1(x, lon, lat, xlims, ylims, breaks = breaks,
 \item{text}{display some text in each point. Length should be the same as lat and lon.}
 
 \item{cex.text}{numeric value giving the text expansion factor. Default: 1.}
+
+\item{map.fill}{logical. If map is filled with colour in `map.col'. Default: FALSE}
+
+\item{map.col}{Colour for the map (continent). Default: grey89.}
 }
 \description{
 Plot a figure based on point stations, for a single plot.

@@ -25,6 +25,8 @@
 #' @param axis.lab display or not lon/lat ticks and labels. Default=FALSE
 #' @param text display some text in each point. Length should be the same as lat and lon.
 #' @param cex.text numeric value giving the text expansion factor. Default: 1.
+#' @param map.fill logical. If map is filled with colour in `map.col'. Default: FALSE
+#' @param map.col Colour for the map (continent). Default: grey89.
 #' @param disp.warnings logical to set if warnings shoul be displayed.
 #' @param export logical. If TRUE, the figure is exported as pdf file. Default: False.
 #' @param export.path path (including file name) to save the plot.
@@ -54,7 +56,7 @@ plotFun.stn <- function(data, lon, lat, xlims, ylims, lattice=NULL, breaks= NULL
                         title.single=NULL,  unit.text=NULL, mark.border=TRUE, cex.marker=1, 
                         cex.main=1,  cex.single=1, cex.unit=1, cex.textcbar=1, width.cbar=0.1, 
                         disp.warnings=FALSE, axis.lab=FALSE, export=FALSE, export.format=NULL, 
-                        export.path=NULL, text=NULL, cex.text=1){
+                        export.path=NULL, text=NULL, cex.text=1, map.fill=FALSE, map.col="grey89"){
 
 	# Verification checks 
 	try(if(export & is.null(export.format)) stop("Cannot save plot: missing export.format"))
@@ -78,7 +80,7 @@ plotFun.stn <- function(data, lon, lat, xlims, ylims, lattice=NULL, breaks= NULL
 		if(is.null(breaks)) breaks <- set.Breaks(data)
 		
 		# Plot
-		plotFun.stn1(data, lon, lat, xlims, ylims, breaks, palette, cex.marker, cex.main, title.main, axis.lab, mark.border=mark.border, text=text, cex.text=cex.text)
+		plotFun.stn1(data, lon, lat, xlims, ylims, breaks, palette, cex.marker, cex.main, title.main, axis.lab, mark.border=mark.border, text=text, cex.text=cex.text, map.fill=map.fill, map.col=map.col)
 
 		# Include colorbar
 		par(mar=c(3,0.6,3,5))
