@@ -48,8 +48,12 @@ plotFun.kde2d.hist <- function(var1, var2, xlim=range(var1, na.rm=T), ylim=range
 
 
 	# *** Calculate 2D Kernel density ***
-	k <- kde2d(df$x, df$y, n=n.bins, lims= c(xlim[1],xlim[2], ylim[1], ylim[2]))
-
+	#k <- kde2d(df$x, df$y, n=n.bins, lims= c(xlim[1],xlim[2], ylim[1], ylim[2]))
+	k <- kde2d(df$x, df$y, n=n.bins, lims= c(xlim[1],xlim[2], ylim[1], ylim[2]),
+	           h = c(ifelse(bandwidth.nrd(df$x) == 0, 0.1, bandwidth.nrd(df$x)),
+	                 ifelse(bandwidth.nrd(df$y) == 0, 0.1, bandwidth.nrd(df$y))))
+	
+	
 	# *** Settings for density plot ***
 	if(is.null(breaks.den)) breaks.den <- seq(0, max(k$z), length=1000) 
 	k$z[k$z > max(breaks.den)] <- max(breaks.den) # otherwise values >maximum are plotted in white.
